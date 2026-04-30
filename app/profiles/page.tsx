@@ -41,7 +41,7 @@ export default function ProfilesList() {
           <div key={p.id} className="border border-gray-200 p-4 rounded-xl shadow-sm flex justify-between items-center bg-white">
             <div className="flex flex-col">
                 <span className='font-semibold text-gray-900'>{p.name}</span>
-                <span className='text-sm text-gray-500'>{p.country_name}</span>
+                <span className='text-sm text-gray-800'>{p.country_name}</span>
             </div>
             <Link 
                 href={`/profiles/${p.id}`}

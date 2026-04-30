@@ -36,7 +36,7 @@ export default function SearchPage() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Try 'male above 20' or 'young adult in Nigeria'..."
-                    className="flex-1 p-3 border rounded-lg bg-white border-gray-300"
+                    className="flex-1 p-3 border rounded-lg bg-white border-gray-300 placeholder:text-gray-950"
                 />
                 <button className="bg-blue-600 px-6 py-2 rounded-lg text-white font-medium hover:bg-blue-700">
                     {loading ? 'Searching...' : 'Search'}
@@ -63,7 +63,7 @@ export default function SearchPage() {
                     </div>
                 ))}
                 {!loading && query && results.length === 0 && !error && (
-                    <p className="text-gray-500 text-center py-10">No profiles found matching that query.</p>
+                    <p className="text-gray-900 text-center py-10">No profiles found matching that query.</p>
                 )}
             </div>
         </div>

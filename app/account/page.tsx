@@ -17,7 +17,11 @@ export default function AccountPage() {
     <div className="p-8 max-w-xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">Your Account</h1>
       <div className="bg-gray-50 rounded-2xl p-6 border flex items-center gap-6">
-        <img src={user.avatar_url} alt="Avatar" className="w-20 h-20 rounded-full border-2 border-blue-500" />
+        <img 
+          src={user.avatar_url || 'https://github.com/identicons/jedi.png'} 
+          alt="Avatar" 
+          className="w-20 h-20 rounded-full border-2 border-blue-500" 
+        />
         <div>
           <h2 className="text-xl font-bold">{user.username}</h2>
           <p className="text-gray-500">{user.email}</p>

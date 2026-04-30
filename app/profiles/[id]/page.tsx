@@ -27,11 +27,11 @@ export default function ProfileDetail() {
           </div>
           <div className="flex justify-between border-b pb-2">
             <span className="text-black">Gender</span>
-            <span className="font-semibold capitalize">{profile.gender}</span>
+            <span className="font-semibold capitalize text-blue-600">{profile.gender}</span>
           </div>
           <div className="flex justify-between border-b pb-2">
             <span className="text-black">Confidence Score</span>
-            <span className="font-semibold">{(profile.gender_probability * 100).toFixed(1)}%</span>
+            <span className="font-semibold text-blue-600">{(profile.gender_probability * 100).toFixed(1)}%</span>
           </div>
         </div>
       </div>

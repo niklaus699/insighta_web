@@ -31,7 +31,7 @@ export default function Dashboard() {
       <ul className="divide-y border rounded-lg bg-white">
         {stats.recent.map((p: any) => (
           <li key={p.id} className="p-4 flex justify-between">
-            <span>{p.name}</span>
+            <span className="text-black">{p.name}</span>
             <span className="text-black text-sm">{new Date(p.created_at).toLocaleDateString()}</span>
           </li>
         ))}
