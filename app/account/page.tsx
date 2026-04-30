@@ -8,7 +8,7 @@ export default function AccountPage() {
     // You should have a /api/me endpoint in Flask that returns the current JWT user
     api.get('/api/me', { withCredentials: true })
       .then(res => setUser(res.data.user))
-      .catch(() => window.location.href = '/login');
+      .catch((e) => console.error("Failed to fetch user info", e));
   }, []);
 
   if (!user) return <div className="p-8">Loading Account...</div>;
