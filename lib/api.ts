@@ -1,31 +1,29 @@
 import axios from 'axios';
 
-// Use NEXT_PUBLIC prefix for Next.js environment variables
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true, // Required for HTTP-only cookies
+  withCredentials: true, 
   headers: {
     'Content-Type': 'application/json',
     'X-API-Version': '1'
   },
 });
 
-// Helper to get cookie value by name
-const getCookie = (name: string) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(';').shift();
-  return null;
-};
-
 api.interceptors.request.use((config) => {
-  // Only attach CSRF token for non-GET requests
+  // 1. Try to get token from LocalStorage (if you save it there after login)
+  const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  // 2. CSRF Handling for non-GET requests (kept from your original)
   if (config.method !== 'get') {
-    const csrfToken = getCookie('csrf_access_token');
-    if (csrfToken) {
-      config.headers['X-CSRF-TOKEN'] = csrfToken;
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; csrf_access_token=`);
+    if (parts.length === 2) {
+        config.headers['X-CSRF-TOKEN'] = parts.pop()?.split(';').shift();
     }
   }
   return config;
