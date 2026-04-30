@@ -28,7 +28,7 @@ export default function SearchPage() {
     };
 
     return (
-        <div className="p-8 max-w-4xl mx-auto text-black">
+        <div className="p-8 max-w-4xl mx-auto">
             <h1 className="text-3xl font-bold mb-6">Search Profiles</h1>
             <form onSubmit={handleSearch} className="flex gap-2 mb-8">
                 <input 

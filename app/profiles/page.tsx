@@ -22,7 +22,7 @@ export default function ProfilesList() {
   useEffect(() => { fetchProfiles(); }, [page, gender]);
 
   return (
-    <div className="p-8 text-black">
+    <div className="p-8">
       <h1 className="text-2xl font-bold mb-6">User Profiles</h1>
       
       <div className="flex gap-4 mb-6">
@@ -39,7 +39,6 @@ export default function ProfilesList() {
       <div className="grid gap-4">
         {profiles.map((p: any) => (
           <div key={p.id} className="border border-gray-200 p-4 rounded-xl shadow-sm flex justify-between items-center bg-white">
-            {/* FIX: Changed text-white to text-black so you can see it */}
             <div className="flex flex-col">
                 <span className='font-semibold text-gray-900'>{p.name}</span>
                 <span className='text-sm text-gray-500'>{p.country_name}</span>
