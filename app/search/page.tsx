@@ -49,8 +49,8 @@ export default function SearchPage() {
                 {results.map((profile: any) => (
                     <div key={profile.id} className="p-4 border border-gray-200 rounded-xl bg-gray-50 flex justify-between items-center shadow-sm">
                         <div>
-                            <p className="font-bold text-lg">{profile.name}</p>
-                            <p className="text-sm text-gray-600">
+                            <p className="font-bold text-lg text-black">{profile.name}</p>
+                            <p className="text-sm text-black">
                                 {profile.gender} • {profile.age} years old • {profile.country_name}
                             </p>
                         </div>

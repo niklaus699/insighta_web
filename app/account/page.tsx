@@ -7,7 +7,7 @@ export default function AccountPage() {
   useEffect(() => {
     // You should have a /api/me endpoint in Flask that returns the current JWT user
     api.get('/api/me', { withCredentials: true })
-      .then(res => setUser(res.data.user))
+      .then(res => setUser(res.data.user_dict))
       .catch((e) => console.error("Failed to fetch user info", e));
   }, []);
 

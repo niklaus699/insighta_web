@@ -22,15 +22,15 @@ export default function ProfileDetail() {
         
         <div className="space-y-4">
           <div className="flex justify-between border-b pb-2">
-            <span className="text-gray-500">Age Group</span>
+            <span className="text-black">Age Group</span>
             <span className="font-semibold capitalize">{profile.age_group}</span>
           </div>
           <div className="flex justify-between border-b pb-2">
-            <span className="text-gray-500">Gender</span>
+            <span className="text-black">Gender</span>
             <span className="font-semibold capitalize">{profile.gender}</span>
           </div>
           <div className="flex justify-between border-b pb-2">
-            <span className="text-gray-500">Confidence Score</span>
+            <span className="text-black">Confidence Score</span>
             <span className="font-semibold">{(profile.gender_probability * 100).toFixed(1)}%</span>
           </div>
         </div>
