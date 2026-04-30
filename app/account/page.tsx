@@ -1,13 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-
+import { api } from '@/lib/api';
 export default function AccountPage() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     // You should have a /api/me endpoint in Flask that returns the current JWT user
-    axios.get('http://localhost:8000/api/me', { withCredentials: true })
+    api.get('/api/me', { withCredentials: true })
       .then(res => setUser(res.data.user))
       .catch(() => window.location.href = '/login');
   }, []);

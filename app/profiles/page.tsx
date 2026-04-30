@@ -1,6 +1,6 @@
 'use client';
+import { api } from '@/lib/api';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 export default function ProfilesList() {
   const [profiles, setProfiles] = useState([]);
@@ -8,7 +8,7 @@ export default function ProfilesList() {
   const [gender, setGender] = useState('');
 
   const fetchProfiles = async () => {
-    const res = await axios.get(`http://localhost:8000/api/profiles`, {
+    const res = await api.get('/api/profiles', {
       params: { page, gender },
       withCredentials: true
     });

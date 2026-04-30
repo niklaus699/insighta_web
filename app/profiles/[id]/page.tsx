@@ -1,14 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import axios from 'axios';
+import { api } from '@/lib/api';
 
 export default function ProfileDetail() {
   const { id } = useParams();
   const [profile, setProfile] = useState<any>(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/profiles/${id}`, { withCredentials: true })
+    api.get(`/api/profiles/${id}`, { withCredentials: true })
       .then(res => setProfile(res.data.data));
   }, [id]);
 

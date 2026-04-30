@@ -1,6 +1,6 @@
 'use client';
+import { api } from '@/lib/api';
 import { useState } from 'react';
-import axios from 'axios';
 
 export default function SearchPage() {
     const [query, setQuery] = useState('');
@@ -11,7 +11,7 @@ export default function SearchPage() {
         e.preventDefault();
         setError('');
         try {
-            const res = await axios.get(`http://localhost:8000/api/profiles/search`, {
+            const res = await api.get('/api/profiles/search', {
                 params: { q: query },
                 withCredentials: true
             });

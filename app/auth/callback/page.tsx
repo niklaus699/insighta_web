@@ -1,7 +1,7 @@
 'use client';
+import { api } from '@/lib/api';
 import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import axios from 'axios';
 
 export default function AuthCallback() {
   const router = useRouter();
@@ -10,12 +10,9 @@ export default function AuthCallback() {
 
   useEffect(() => {
     if (code) {
-      axios.post('http://localhost:8000/auth/web/callback', 
-        { code }, 
-        { withCredentials: true } // Crucial for receiving cookies
-      )
-      .then(() => router.push('/dashboard'))
-      .catch(() => router.push('/login?error=auth_failed'));
+      api.post('/auth/web/callback', { code })
+        .then(() => router.push('/dashboard'))
+        .catch(() => router.push('/login?error=auth_failed'));
     }
   }, [code, router]);
 

@@ -1,12 +1,12 @@
 'use client';
+import { api } from '@/lib/api';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 export default function Dashboard() {
   const [stats, setStats] = useState<any>(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/stats', { withCredentials: true })
+    api.get('/api/stats', { withCredentials: true })
       .then(res => setStats(res.data.data))
       .catch(err => console.error(err));
   }, []);
