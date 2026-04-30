@@ -4,7 +4,6 @@ import { api } from '@/lib/api';
 import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-// 1. Move logic into a sub-component
 function AuthCallbackHandler() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -12,15 +11,23 @@ function AuthCallbackHandler() {
 
   useEffect(() => {
     if (code) {
+      // 1. Post to the specialized web_callback route
       api.post('/auth/web/callback', { code })
-        .then(() => router.push('/dashboard'))
-        .catch(() => router.push('/login?error=auth_failed'));
+        .then(() => {
+          // 2. The backend sets cookies automatically. 
+          // Just move to the dashboard.
+          router.push('/dashboard');
+        })
+        .catch((err) => {
+          console.error("Auth failed:", err);
+          router.push('/login?error=auth_failed');
+        });
     }
   }, [code, router]);
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      Authenticating...
+    <div className="flex h-screen items-center justify-center bg-white text-black">
+      <p className="animate-pulse">Authenticating with Insighta...</p>
     </div>
   );
 }

@@ -12,18 +12,19 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  // 1. Try to get token from LocalStorage (if you save it there after login)
+  // Check localStorage for the token (same way the CLI uses its json file)
   const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
+  
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
 
-  // 2. CSRF Handling for non-GET requests (kept from your original)
+  // Keep your CSRF logic for POST/PUT/DELETE
   if (config.method !== 'get') {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; csrf_access_token=`);
     if (parts.length === 2) {
-        config.headers['X-CSRF-TOKEN'] = parts.pop()?.split(';').shift();
+      config.headers['X-CSRF-TOKEN'] = parts.pop()?.split(';').shift();
     }
   }
   return config;
