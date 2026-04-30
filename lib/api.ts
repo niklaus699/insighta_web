@@ -6,16 +6,18 @@ export const api = axios.create({
   baseURL: BASE_URL,
   withCredentials: true, 
   headers: {
+    'X-API-Version': '1',
     'Content-Type': 'application/json',
-    'X-API-Version': '1'
   },
 });
 
 api.interceptors.request.use((config) => {
-  // Check localStorage for the token (same way the CLI uses its json file)
   const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
   
-  if (token) {
+  // FIX: Only add the header if the token is a real string.
+  // If token is null, no header is sent.
+  // This allows the browser to use Cookies instead!
+  if (token && token !== 'null' && token !== 'undefined') {
     config.headers.Authorization = `Bearer ${token}`;
   }
 
