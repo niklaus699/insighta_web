@@ -1,7 +1,7 @@
 export default function LandingPage() {
   // Use the environment variable with a fallback for local dev
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-  const GITHUB_AUTH_URL = `${API_BASE_URL}/auth/github`;
+  const GITHUB_AUTH_URL = `${API_BASE_URL}/auth/github?source=web`;
 
   return (
     <div className="flex flex-col items-center justify-center h-screen space-y-6">
